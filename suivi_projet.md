@@ -13,3 +13,11 @@
 * A faire à la prochaine séance : Trouver un moyen d'importer des données
 * Difficultés rencontrées : Documentation sur Dolibarr
 * Remarques sur la séances : Retard lié à un accident (-20 min)
+
+## Séance n° 2
+
+* Date : 06/11/2024
+* Travail effectué : Mise en place de MariaDB et connexion avec Dolibarr
+* A faire à la prochaine séance : Regarder les Addons
+* Difficultés rencontrées : /
+* Remarques sur la séances : /
