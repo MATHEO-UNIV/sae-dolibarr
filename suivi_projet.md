@@ -21,3 +21,11 @@
 * A faire à la prochaine séance : Regarder les Addons
 * Difficultés rencontrées : /
 * Remarques sur la séances : /
+
+## Séance n° 3
+
+* Date : 12/11/2024
+* Travail effectué : Création des scripts install.sh et import_csv.sh
+* A faire à la prochaine séance : Continuer les scripts et faire différents tests
+* Difficultés rencontrées : /
+* Remarques sur la séances : /
