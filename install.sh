@@ -38,7 +38,7 @@ if [ ! -f sql/dolibarr.sql ]; then
   exit 1
 fi
 
-mysql -u dolibarr -p'dolibarr' -h 127.0.0.1 --port=3306 < sql/dolibarr.sql 2>/dev/null
+mysql -u dolibarr -p'dolibarr' -h 127.0.0.1 --port=3306 < dolibarr.sql 2>/dev/null
 
 #ETAPE 4 : Création du conteneur Dolibarr
 docker run \
@@ -47,8 +47,8 @@ docker run \
   --env DOLI_DB_HOST=mysql-cont \
   --env DOLI_DB_NAME=dolibarr \
   --env DOLI_MODULES=modSociete \
-  --env DOLI_ADMIN_LOGIN=calvin \
-  --env DOLI_ADMIN_PASSWORD=arrive \
+  --env DOLI_ADMIN_LOGIN=admin \
+  --env DOLI_ADMIN_PASSWORD=admin \
   --network=sae51 \
   -d upshift/dolibarr
 
