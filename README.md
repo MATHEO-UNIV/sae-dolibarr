@@ -1,1 +1,192 @@
-# sae-dolibarr
+# SAE52 : Installation d'un ERP/CRM
+
+## Objectif du projet
+
+Nous avons pour objectif d'installer, configurer et automatiser l'installation d'un ERP/CRM **Dolibarr** sur un serveur dédié hébergé en interne. Le projet inclut également l'importation des données depuis une ancienne solution externalisée sous forme de fichiers CSV. À terme, nous devrons fournir une solution clé en main permettant de gérer les informations relatives aux clients et fournisseurs, avec un processus d'importation des données et une gestion de la sauvegarde.
+
+## Sommaire
+
+1. [Prérequis](#prérequis)
+2. [Installation de Dolibarr](#installation-de-dolibarr)
+3. [Importation des données](#importation-des-données)
+4. [Dockerisation](#dockerisation)
+5. [Sauvegarde des données](#sauvegarde-des-données)
+6. [Structure du projet](#structure-du-projet)
+7. [Suivi du projet](#suivi-du-projet)
+8. [Références](#références)
+
+---
+
+## Prérequis
+
+Avant de commencer l'installation de Dolibarr, nous devons nous assurer que notre environnement répond aux exigences suivantes :
+
+- **Système d'exploitation** : Debian/Ubuntu ou tout autre environnement compatible Docker.
+- **Docker** : Nous devons avoir Docker et Docker Compose installés sur notre machine.
+- **Accès root ou sudo** : Nous aurons besoin des privilèges d'administrateur pour installer les paquets nécessaires et configurer le système.
+  
+  Nous pouvons installer Docker sur Debian/Ubuntu en suivant ces étapes :
+
+  ```bash
+  sudo apt-get update
+  sudo apt-get install -y docker.io docker-compose
+  ```
+
+---
+
+## Installation de Dolibarr
+
+### Étape 1 : Installation manuelle sur une machine virtuelle ou un conteneur Docker
+
+1. **Téléchargement de la version Dolibarr** :
+   - Nous pouvons télécharger la version `.deb` ou la version source de Dolibarr depuis le [site officiel](https://www.dolibarr.org).
+   - Si nous utilisons la version source, nous devrons installer les dépendances nécessaires telles que PHP, Apache/Nginx et un serveur de base de données (MySQL, MariaDB, ou PostgreSQL).
+
+2. **Installation sur Debian/Ubuntu avec un paquet `.deb`** :
+
+   Si nous optons pour la version Debian, nous pouvons installer Dolibarr en utilisant le gestionnaire de paquets `dpkg` :
+
+   ```bash
+   sudo dpkg -i dolibarr.deb
+   sudo apt-get install -f  # Pour résoudre les dépendances manquantes
+   ```
+
+3. **Installation via Docker** :
+   Pour faciliter le déploiement, nous pouvons créer un conteneur Docker pour Dolibarr. Il existe des images officielles Docker disponibles pour Dolibarr. Si nous préférons créer notre propre image Docker, voici un exemple de `Dockerfile` :
+
+   ```dockerfile
+   FROM debian:11
+   RUN apt-get update && apt-get install -y apache2 mariadb-server php php-mysql php-xml php-mbstring
+   RUN curl -o /var/www/html/dolibarr.zip https://sourceforge.net/projects/dolibarr/files/latest/download
+   RUN unzip /var/www/html/dolibarr.zip -d /var/www/html/
+   ```
+
+---
+
+## Importation des données
+
+### Étape 2 : Importation des données CSV
+
+L'importation des données depuis un ancien système ERP/CRM sera réalisée à partir des fichiers CSV fournis. 
+
+1. **Méthode 1 : Utilisation des outils intégrés de Dolibarr** :
+   - Dolibarr propose un menu d'importation de fichiers CSV. Cette méthode est simple mais non automatisable.
+
+2. **Méthode 2 : Importation directe dans la base de données** :
+   - Cette méthode consiste à analyser les tables Dolibarr et à écrire un script SQL ou un script Python pour importer les données directement dans la base de données.
+   - Exemple de script SQL pour importer un fichier CSV dans la table `llx_societe` de Dolibarr :
+   
+   ```sql
+   LOAD DATA INFILE '/path/to/clients.csv'
+   INTO TABLE llx_societe
+   FIELDS TERMINATED BY ','
+   ENCLOSED BY '"'
+   LINES TERMINATED BY '\n'
+   (name, address, phone, email);
+   ```
+
+---
+
+## Dockerisation
+
+### Étape 3 : Dockerisation de Dolibarr et de la base de données
+
+Pour déployer Dolibarr dans un environnement de production, nous allons utiliser Docker pour containeriser l'application et la base de données.
+
+1. **Docker Compose** :
+   Nous allons utiliser Docker Compose pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici un exemple de fichier `docker-compose.yml` :
+
+   ```yaml
+   version: '3.8'
+   services:
+     db:
+       image: mariadb:10.5
+       environment:
+         MYSQL_ROOT_PASSWORD: rootpassword
+         MYSQL_DATABASE: dolibarr
+       volumes:
+         - db_data:/var/lib/mysql
+
+     dolibarr:
+       image: dolibarr/dolibarr:latest
+       ports:
+         - "8080:80"
+       environment:
+         DB_HOST: db
+         DB_NAME: dolibarr
+         DB_USER: root
+         DB_PASSWORD: rootpassword
+       depends_on:
+         - db
+
+   volumes:
+     db_data:
+   ```
+
+   Avec ce fichier, nous pouvons démarrer les services en exécutant :
+
+   ```bash
+   docker-compose up -d
+   ```
+
+---
+
+## Sauvegarde des données
+
+### Étape 4 : Sauvegarde et récupération des données
+
+Pour assurer la disponibilité des données et permettre une récupération rapide en cas de défaillance (Plan de Reprise d'Activité - PRA), il est crucial de mettre en place une solution de sauvegarde.
+
+1. **Sauvegarde de la base de données** :
+   Nous pouvons utiliser des outils comme `mysqldump` pour créer une sauvegarde de la base de données :
+
+   ```bash
+   mysqldump -u root -p dolibarr > backup_dolibarr.sql
+   ```
+
+2. **Sauvegarde des fichiers Dolibarr** :
+   Les fichiers de configuration et les fichiers générés par Dolibarr doivent également être sauvegardés. Nous pouvons utiliser `rsync` pour sauvegarder les répertoires importants.
+
+---
+
+## Structure du projet
+
+Voici la structure de répertoires que nous avons choisie pour ce projet :
+
+```
+sae-dolibarr/
+│
+├── docs/                # Documentation complémentaire
+├── sources/             # Scripts source, Dockerfile, etc.
+├── tests/               # Scripts de tests, essais
+├── data/                # Fichiers de données (CSV, etc.)
+├── sources.md           # Références aux sources utilisées
+├── readme.md            # Ce fichier README
+├── suivi_projet.md      # Suivi du projet
+```
+
+---
+
+## Suivi du projet
+
+Le chef de projet est chargé de mettre à jour le fichier `suivi_projet.md` après chaque séance pour consigner l'avancement du projet, les obstacles rencontrés et les actions à venir.
+
+---
+
+## Références
+
+- [Site officiel de Dolibarr](https://www.dolibarr.org/)
+- [Docker pour Dolibarr](https://hub.docker.com/r/dolibarr/dolibarr)
+- [Installation de Dolibarr sur Debian](https://all-it-network.com/installer-dolibar/)
+- [Documentation Docker](https://docs.docker.com/)
+
+---
+
+## Membres du projet
+
+1. Prénom Nom 1  
+2. Prénom Nom 2  
+
+---
+
+Cela vous permettra de démarrer la documentation de votre projet tout en incluant toutes les informations nécessaires à son déploiement et son suivi.
