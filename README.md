@@ -184,9 +184,8 @@ Le chef de projet est chargé de mettre à jour le fichier `suivi_projet.md` apr
 
 ## Membres du projet
 
-1. Prénom Nom 1  
-2. Prénom Nom 2  
+1. Fourneaux Mathéo  
+2. Francoise Paul 
 
 ---
 
-Cela vous permettra de démarrer la documentation de votre projet tout en incluant toutes les informations nécessaires à son déploiement et son suivi.
