@@ -9,6 +9,7 @@ docker volume create dolibarr_db
 docker volume create dolibarr_html
 docker volume create dolibarr_docs
 
+docker network rm sae51
 docker network create sae51
 
 #ETAPE 2 : création du conteneur SGBD MySQL
