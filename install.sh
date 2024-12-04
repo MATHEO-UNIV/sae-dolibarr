@@ -40,7 +40,7 @@ docker run \
   --env DOLI_ADMIN_LOGIN=admin \
   --env DOLI_ADMIN_PASSWORD=admin \
   --network=sae51 \
-  -d dolibarr/dolibarr
+  -d upshift/dolibarr
 
 # Attente avant lancement de l'interface Dolibarr
 echo "Waiting for Dolibarr to start..."
