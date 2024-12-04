@@ -32,14 +32,6 @@ until mysql -u dolibarr -p'dolibarr' -h 127.0.0.1 --port=3306 -e "SELECT 1" &>/d
   sleep 2
 done
 
-#ETAPE 3 : Création de la BDD Dolibarr à partir du fichier SQL
-if [ ! -f sql/dolibarr.sql ]; then
-  echo "File sql/dolibarr.sql not found!"
-  exit 1
-fi
-
-mysql -u dolibarr -p'dolibarr' -h 127.0.0.1 --port=3306 < dolibarr.sql 2>/dev/null
-
 #ETAPE 4 : Création du conteneur Dolibarr
 docker run \
   -p 80:80 \
