@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo systemctl stop mysql
+sudo systemctl stop apache2
+
 # Nettoyage des volumes et des conteneurs existants
 docker rm -f mysql-cont dolibarr-cont
 docker volume rm dolibarr_db dolibarr_html dolibarr_docs
