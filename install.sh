@@ -26,11 +26,9 @@ docker run \
   --network=sae51 \
   -d mysql:latest
 
-# Vérification que MySQL est bien disponible
-until mysql -u dolibarr -p'dolibarr' -h 127.0.0.1 --port=3306 -e "SELECT 1" &>/dev/null; do
-  echo "Waiting for MySQL to be available..."
-  sleep 2
-done
+
+sleep 3
+
 
 #ETAPE 4 : Création du conteneur Dolibarr
 docker run \
