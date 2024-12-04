@@ -16,6 +16,10 @@ docker network rm sae51
 docker network create sae51
 
 #ETAPE 2 : création du conteneur SGBD MySQL
+docker rm -f mysql-cont dolibarr-cont
+docker network rm sae51
+docker network create sae51
+
 docker run \
   --name mysql-cont \
   -p 3306:3306 \
@@ -24,15 +28,10 @@ docker run \
   --env MYSQL_USER=dolibarr \
   --env MYSQL_PASSWORD=dolibarr \
   --env MYSQL_DATABASE=dolibarr \
-  --env character_set_client=utf8 \
-  --env character-set-server=utf8mb4 \
-  --env collation-server=utf8mb4_unicode_ci \
   --network=sae51 \
   -d mysql:latest
 
-
-sleep 3
-
+sleep 15
 
 #ETAPE 4 : Création du conteneur Dolibarr
 docker run \
@@ -40,7 +39,6 @@ docker run \
   --name dolibarr-cont \
   --env DOLI_DB_HOST=mysql-cont \
   --env DOLI_DB_NAME=dolibarr \
-  --env DOLI_MODULES=modSociete \
   --env DOLI_ADMIN_LOGIN=admin \
   --env DOLI_ADMIN_PASSWORD=admin \
   --network=sae51 \
