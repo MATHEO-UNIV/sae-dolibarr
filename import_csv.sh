@@ -4,7 +4,7 @@
 MYSQL_PASS='dolibarr'
 
 # Fichier CSV à traiter
-CSV_FILE="./csv/export_societe.csv"
+CSV_FILE="export_societe.csv"
 
 # Vérification que le fichier CSV existe
 if [ ! -f "$CSV_FILE" ]; then
