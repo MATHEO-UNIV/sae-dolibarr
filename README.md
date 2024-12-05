@@ -61,16 +61,6 @@ Développé en PHP, Dolibarr est également compatible avec différentes bases d
    sudo apt-get install -f  # Pour résoudre les dépendances manquantes
    ```
 
-3. **Installation via Docker** :
-   Pour faciliter le déploiement, nous pouvons créer un conteneur Docker pour Dolibarr. Il existe des images officielles Docker disponibles pour Dolibarr. Si nous préférons créer notre propre image Docker, voici un exemple de `Dockerfile` :
-
-   ```dockerfile
-   FROM debian:11
-   RUN apt-get update && apt-get install -y apache2 mariadb-server php php-mysql php-xml php-mbstring
-   RUN curl -o /var/www/html/dolibarr.zip https://sourceforge.net/projects/dolibarr/files/latest/download
-   RUN unzip /var/www/html/dolibarr.zip -d /var/www/html/
-   ```
-
 ---
 
 ## Importation des données
