@@ -89,7 +89,7 @@ L'importation des données depuis un ancien système ERP/CRM sera réalisée à 
 
 ## Dockerisation
 
-### Étape 3 : Dockerisation de Dolibarr et de la base de données
+### Étape 3 : Préparation de l'environnement
 
 Pour déployer Dolibarr dans un environnement de production, nous allons utiliser Docker pour containeriser l'application et la base de données.
 
