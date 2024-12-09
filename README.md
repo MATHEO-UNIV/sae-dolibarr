@@ -92,7 +92,7 @@ L'importation des données depuis un ancien système ERP/CRM sera réalisée à 
 Pour déployer Dolibarr dans un environnement de production, nous allons utiliser Docker pour containeriser l'application et la base de données.
 
 1. **install.sh** :
-   Nous allons utiliser mit en place un **install.sh** pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici l'apercu de notre **install.sh** :
+   Nous allons utiliser un **install.sh** pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici l'apercu de notre **install.sh** :
 
    ``` #!/bin/bash
 
