@@ -174,7 +174,6 @@ Voici la structure de répertoires que nous avons choisie pour ce projet :
 ```
 sae-dolibarr/
 │
-├── docs/                # Documentation complémentaire
 ├── sources/             # Scripts source, Dockerfile, etc.
 ├── tests/               # Scripts de tests, essais
 ├── data/                # Fichiers de données (CSV, etc.)
