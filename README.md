@@ -14,6 +14,8 @@ Nous avons pour objectif d'installer, configurer et automatiser l'installation d
 6. [Structure du projet](#structure-du-projet)
 7. [Suivi du projet](#suivi-du-projet)
 8. [Références](#références)
+9. [Conclusion](#Conclusion)
+10. [Membres du projet](#Membres du projet) 
 
 ---
 
