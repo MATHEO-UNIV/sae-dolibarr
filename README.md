@@ -169,7 +169,7 @@ sae-dolibarr/
 
 ## Suivi du projet
 
-Le chef de projet est chargé de mettre à jour le fichier `suivi_projet.md` après chaque séance pour consigner l'avancement du projet, les obstacles rencontrés et les actions à venir.
+Nous étions est chargé de mettre à jour le fichier `suivi_projet.md` après chaque séance pour montrer l'avancement du projet, les obstacles rencontrés et les actions à venir. Il est très utile en début de séances pour tout simplement reprendre le projet la ou nous l'avions arreté.
 
 ---
 
