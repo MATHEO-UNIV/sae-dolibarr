@@ -33,7 +33,23 @@
 ## Séance n° 4
 
 * Date : 14/11/2024
-* Travail effectué : Amélioration et debug du install.sh + rédaction finale du readme
+* Travail effectué : Amélioration et debug du install.sh + Début de la rédaction du readme
 * A faire à la prochaine séance : Continuer les scripts (debug mysql)
+* Difficultés rencontrées : mysql
+* Remarques sur la séances : /
+
+## Séance n° 5
+
+* Date : 04/12/2024
+* Travail effectué : debug du install.sh 
+* A faire à la prochaine séance : Continuer les scripts (debug mysql) et finir le readme
+* Difficultés rencontrées : mysql
+* Remarques sur la séances : /
+
+## Séance n° 6
+
+* Date : 09/12/2024
+* Travail effectué : Amélioration et debug du install.sh + rédaction finale du readme
+* A faire à la prochaine séance : /
 * Difficultés rencontrées : mysql
 * Remarques sur la séances : /
