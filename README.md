@@ -92,7 +92,7 @@ L'importation des données depuis un ancien système ERP/CRM sera réalisée à 
 Pour déployer Dolibarr dans un environnement de production, nous allons utiliser Docker pour containeriser l'application et la base de données.
 
 1. **Docker Compose** :
-   Nous allons utiliser Docker Compose pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici un exemple de fichier `docker-compose.yml` :
+   Nous allons utiliser mit en place un **install.sh** pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici l'apercu de notre **install.sh** :
 
    ``` #!/bin/bash
 
@@ -184,7 +184,7 @@ sae-dolibarr/
 
 ## Suivi du projet
 
-Nous étions est chargé de mettre à jour le fichier `suivi_projet.md` après chaque séance pour montrer l'avancement du projet, les obstacles rencontrés et les actions à venir. Il est très utile en début de séances pour tout simplement reprendre le projet la ou nous l'avions arreté.
+Nous étions chargé de mettre à jour le fichier `suivi_projet.md` après chaque séance pour montrer l'avancement du projet, les obstacles rencontrés et les actions à venir. Il est très utile en début de séances pour tout simplement reprendre le projet la ou nous l'avions arreté.
 
 ---
 
@@ -196,6 +196,10 @@ Nous étions est chargé de mettre à jour le fichier `suivi_projet.md` après c
 - [Documentation Docker](https://docs.docker.com/)
 
 ---
+
+## Conclusion
+
+Une fois la date du projet terminée, nous avons pas eu le temps de tout effectuer, nous avons rencontré des difficultés comme par exemple notre Dolibarr qui se ferme quelques secondes après avoir éxécuter notre install.sh.
 
 ## Membres du projet
 
