@@ -96,7 +96,7 @@ Pour déployer Dolibarr dans un environnement de production, nous allons utilise
 1. **Docker Compose** :
    Nous allons utiliser Docker Compose pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici un exemple de fichier `docker-compose.yml` :
 
-   ```#!/bin/bash
+   ``` ```#!/bin/bash
 
 sudo systemctl stop mysql
 sudo systemctl stop apache2
@@ -145,6 +145,8 @@ docker run \
 # Attente avant lancement de l'interface Dolibarr
 echo "Waiting for Dolibarr to start..."
 sleep 10
+   ```
+
    ```
 
 ---
