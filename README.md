@@ -36,13 +36,11 @@ Avant de commencer l'installation de Dolibarr, nous devons nous assurer que notr
 
 ## Installation de Dolibarr
 
-Avant de commencer à parler de **Dolibarr** , il est important de comprendre son utilité dans un projet et donc notamment son importance dans la SAE52. Nous avons donc décidé de mettre en place un petit résumé qui nous sert à présenter **Dolibarr**.
+**Dolibarr** est un logiciel gratuit qui aide les petites et moyennes entreprises à gérer leurs activités. Il combine deux fonctions principales : la gestion de l'entreprise (ERP) et la gestion des relations avec les clients (CRM). Avec **Dolibarr**, on peut facilement gérer les clients, les fournisseurs, les stocks, les factures, les paiements, ainsi que les projets.
 
-**Dolibarr** est un logiciel open-source de gestion intégré (ERP) et de gestion de la relation client (CRM). Conçu pour les petites et moyennes entreprises, il offre une suite d'outils permettant de gérer efficacement les aspects administratifs et commerciaux de l'entreprise, comme la gestion des clients, des fournisseurs, des stocks, des factures, des paiements, ainsi que des projets.
+Ce logiciel est modulaire, ce qui signifie que l'on peut choisir d'activer ou de désactiver certaines fonctionnalités en fonction des besoins de l'entreprise. Il possède une interface web simple, accessible depuis n'importe quel appareil, ce qui permet de l'utiliser à distance.
 
-L'architecture de Dolibarr est modulaire, ce qui permet aux utilisateurs de personnaliser l'outil en fonction de leurs besoins spécifiques, en activant ou désactivant des modules. Il dispose également d'une interface web conviviale, accessible depuis n'importe quel appareil connecté, facilitant ainsi la gestion à distance.
-
-Développé en PHP, Dolibarr est également compatible avec différentes bases de données (MySQL, MariaDB), et propose plusieurs options d'installation : via des archives de fichiers source, des paquets Debian, ou encore des images Docker pour une installation rapide et standardisée.
+**Dolibarr** est écrit en PHP et peut fonctionner avec des bases de données comme MySQL ou MariaDB. Il existe plusieurs façons de l'installer : en téléchargeant les fichiers source, en utilisant des paquets Debian, ou en utilisant des images Docker pour une installation plus rapide et facile.
 
 ---
 
