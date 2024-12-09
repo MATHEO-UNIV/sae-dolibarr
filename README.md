@@ -15,7 +15,8 @@ Nous avons pour objectif d'installer, configurer et automatiser l'installation d
 7. [Suivi du projet](#suivi-du-projet)
 8. [Références](#références)
 9. [Conclusion](#Conclusion)
-10. [Membres du projet](#Membres du projet) 
+10. [Effectif](#Effectif)
+
 
 ---
 
@@ -203,7 +204,7 @@ Nous étions chargé de mettre à jour le fichier `suivi_projet.md` après chaqu
 
 Une fois la date du projet terminée, nous avons pas eu le temps de tout effectuer, nous avons rencontré des difficultés comme par exemple notre Dolibarr qui se ferme quelques secondes après avoir éxécuter notre install.sh.
 
-## Membres du projet
+## Effectif
 
 1. Fourneaux Mathéo  
 2. Francoise Paul 
