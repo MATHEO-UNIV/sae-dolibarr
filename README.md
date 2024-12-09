@@ -96,37 +96,55 @@ Pour déployer Dolibarr dans un environnement de production, nous allons utilise
 1. **Docker Compose** :
    Nous allons utiliser Docker Compose pour orchestrer les conteneurs pour Dolibarr et la base de données. Voici un exemple de fichier `docker-compose.yml` :
 
-   ```yaml
-   version: '3.8'
-   services:
-     db:
-       image: mariadb:10.5
-       environment:
-         MYSQL_ROOT_PASSWORD: rootpassword
-         MYSQL_DATABASE: dolibarr
-       volumes:
-         - db_data:/var/lib/mysql
+   ``#!/bin/bash
 
-     dolibarr:
-       image: dolibarr/dolibarr:latest
-       ports:
-         - "8080:80"
-       environment:
-         DB_HOST: db
-         DB_NAME: dolibarr
-         DB_USER: root
-         DB_PASSWORD: rootpassword
-       depends_on:
-         - db
+sudo systemctl stop mysql
+sudo systemctl stop apache2
 
-   volumes:
-     db_data:
-   ```
+# Nettoyage des volumes et des conteneurs existants
+docker rm -f mysql-cont dolibarr-cont
+docker volume rm dolibarr_db dolibarr_html dolibarr_docs
 
-   Avec ce fichier, nous pouvons démarrer les services en exécutant :
+#ETAPE 1 : création des volumes nécessaires
+docker volume create dolibarr_db
+docker volume create dolibarr_html
+docker volume create dolibarr_docs
 
-   ```bash
-   docker-compose up -d
+docker network rm sae51
+docker network create sae51
+
+#ETAPE 2 : création du conteneur SGBD MySQL
+docker rm -f mysql-cont dolibarr-cont
+docker network rm sae51
+docker network create sae51
+
+docker run \
+  --name mysql-cont \
+  -p 3306:3306 \
+  -v dolibarr_db:/var/lib/mysql \
+  --env MYSQL_ROOT_PASSWORD=root \
+  --env MYSQL_USER=dolibarr \
+  --env MYSQL_PASSWORD=dolibarr \
+  --env MYSQL_DATABASE=dolibarr \
+  --network=sae51 \
+  -d mysql:latest
+
+sleep 15
+
+#ETAPE 4 : Création du conteneur Dolibarr
+docker run \
+  -p 80:80 \
+  --name dolibarr-cont \
+  --env DOLI_DB_HOST=mysql-cont \
+  --env DOLI_DB_NAME=dolibarr \
+  --env DOLI_ADMIN_LOGIN=admin \
+  --env DOLI_ADMIN_PASSWORD=admin \
+  --network=sae51 \
+  -d upshift/dolibarr
+
+# Attente avant lancement de l'interface Dolibarr
+echo "Waiting for Dolibarr to start..."
+sleep 10
    ```
 
 ---
