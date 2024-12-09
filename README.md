@@ -8,8 +8,8 @@ Nous avons pour objectif d'installer, configurer et automatiser l'installation d
 
 1. [Prérequis](#prérequis)
 2. [Installation de Dolibarr](#installation-de-dolibarr)
-3. [Importation des données](#importation-des-données)
-4. [Dockerisation](#dockerisation)
+3. [Dockerisation](#dockerisation)
+4. [Importation des données](#importation-des-données)
 5. [Sauvegarde des données](#sauvegarde-des-données)
 6. [Structure du projet](#structure-du-projet)
 7. [Suivi du projet](#suivi-du-projet)
@@ -61,31 +61,6 @@ Ce logiciel est modulaire, ce qui signifie que l'on peut choisir d'activer ou de
    sudo dpkg -i dolibarr.deb
    sudo apt-get install -f  # Pour résoudre les dépendances manquantes
    ```
-
----
-
-## Importation des données
-
-### Étape 2 : Importation des données CSV
-
-L'importation des données depuis un ancien système ERP/CRM sera réalisée à partir des fichiers CSV fournis. 
-
-1. **Méthode 1 : Utilisation des outils intégrés de Dolibarr** :
-   - Dolibarr propose un menu d'importation de fichiers CSV. Cette méthode est simple mais non automatisable.
-
-2. **Méthode 2 : Importation directe dans la base de données** :
-   - Cette méthode consiste à analyser les tables Dolibarr et à écrire un script SQL ou un script Python pour importer les données directement dans la base de données.
-   - Exemple de script SQL pour importer un fichier CSV dans la table `llx_societe` de Dolibarr :
-   
-   ```sql
-   LOAD DATA INFILE '/path/to/clients.csv'
-   INTO TABLE llx_societe
-   FIELDS TERMINATED BY ','
-   ENCLOSED BY '"'
-   LINES TERMINATED BY '\n'
-   (name, address, phone, email);
-   ```
-
 ---
 
 ## Dockerisation
@@ -146,6 +121,30 @@ Pour déployer Dolibarr dans un environnement de production, nous allons utilise
    # Attente avant lancement de l'interface Dolibarr
    echo "Waiting for Dolibarr to start..."
    sleep 10
+   ```
+
+---
+
+## Importation des données
+
+### Étape 2 : Importation des données CSV
+
+L'importation des données depuis un ancien système ERP/CRM sera réalisée à partir des fichiers CSV fournis. 
+
+1. **Méthode 1 : Utilisation des outils intégrés de Dolibarr** :
+   - Dolibarr propose un menu d'importation de fichiers CSV. Cette méthode est simple mais non automatisable.
+
+2. **Méthode 2 : Importation directe dans la base de données** :
+   - Cette méthode consiste à analyser les tables Dolibarr et à écrire un script SQL ou un script Python pour importer les données directement dans la base de données.
+   - Exemple de script SQL pour importer un fichier CSV dans la table `llx_societe` de Dolibarr :
+   
+   ```sql
+   LOAD DATA INFILE '/path/to/clients.csv'
+   INTO TABLE llx_societe
+   FIELDS TERMINATED BY ','
+   ENCLOSED BY '"'
+   LINES TERMINATED BY '\n'
+   (name, address, phone, email);
    ```
 
 ---
